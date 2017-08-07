@@ -1,0 +1,14 @@
+{
+  "name": "arcade",
+  "version": "1.0.0",
+  "description": "Basic shell to host html pages that contain the games",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Ammar",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.15.4"
+  }
+}
