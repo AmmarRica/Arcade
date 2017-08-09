@@ -11,8 +11,9 @@ app.get('/', function(req, res){
   res.sendFile(__dirname + '/index.html');
 });
 
-app.get('/astroid', function(req, res){
-  res.sendFile(__dirname + '/astroid/index.html');
+
+app.get('/asteroid', function(req, res){
+  res.sendFile(__dirname + '/asteroid/index.html');
 });
 
-app.use(express.static('astroid'))
+app.use(express.static('asteroid'))
