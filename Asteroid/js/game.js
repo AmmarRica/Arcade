@@ -6,11 +6,6 @@ var gameProperties = {
     padding: 30,
 };
 
-var states = {
-    main: "main",
-    game: "game",
-};
-
 var graphicAssets = {
     ship:{URL:'assets/ship.png', name:'ship'},
     bullet:{URL:'assets/bullet.png', name:'bullet'},    
@@ -57,6 +52,11 @@ var asteroidProperties = {
 var fontAssets = {
     counterFontStyle:{font: '20px Arial', fill: '#FFFFFF', align: 'center'},
 }
+
+
+/////////////////////////////
+/////////////////////////////
+
 
 var gameState = function (game){
     this.shipSprite;
@@ -329,35 +329,3 @@ gameState.prototype = {
         game.state.start(states.main);
     },
 };
-
-
-
-var mainState = function(game){
-    this.tf_start;
-};
-
-mainState.prototype = {
-    create: function () {
-
-        var startInstructions = 'Click to Start -\n\nUP arrow key for thrust.\n\nLEFT and RIGHT arrow keys to turn.\n\nSPACE key to fire.';
-        this.tf_start = game.add.text(game.world.centerX, game.world.centerY, startInstructions, fontAssets.counterFontStyle);
-        this.tf_start.align = 'center';
-        this.tf_start.anchor.set(0.5, 0.5);
-        
-        var space = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
-        game.input.onDown.addOnce(this.startGame, this);
-
-        key1 = game.input.keyboard.addKey(Phaser.Keyboard.ONE);
-        startKey = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
-        startKey.onDown.addOnce(this.startGame,this)
-    },
-    
-    startGame: function () {
-         game.state.start(states.game);
-    },
-};
-
-var game = new Phaser.Game(gameProperties.screenWidth, gameProperties.screenHeight, Phaser.AUTO, 'gameDiv');
-game.state.add(states.main, mainState);
-game.state.add(states.game, gameState);
-game.state.start(states.main);
