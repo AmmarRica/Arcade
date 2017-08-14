@@ -4,7 +4,7 @@
   
 
 # TODO branches:
-~~- Full screen support~~
+- DONE - Full screen support
 - Controller support
 - 2-4 players. (Why not more?)
 - random UFO shooting around
