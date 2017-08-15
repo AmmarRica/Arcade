@@ -4,9 +4,11 @@
   
 
 # TODO branches for Asteroid:
-- Controller support (chrome for now)
+- high score screen
+
 - 2-4 players. (Why not more?)
 - random UFO shooting around
 
 # DONE 
 - Full screen support
+- Controller support (chrome for now)
