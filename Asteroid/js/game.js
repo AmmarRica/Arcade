@@ -1,3 +1,6 @@
+var DEBUG_MODE = false;
+
+
 var gameProperties = {
     screenWidth: 800,
     screenHeight: 600,
@@ -57,6 +60,10 @@ var fontAssets = {
 /////////////////////////////
 /////////////////////////////
 
+/////////////////////////////
+/////////////////////////////
+
+
 
 var gameState = function (game){
     this.shipSprite;
@@ -105,7 +112,58 @@ gameState.prototype = {
         this.initSounds();
         this.initPhysics();
         this.initKeyboard();
+        this.initGamepad();
         this.resetAsteroids();
+    },
+
+    initGamepad: function(){
+
+        this.pad1 = game.input.gamepad.pad1;
+        this.pad2 = game.input.gamepad.pad2;
+        this.pad3 = game.input.gamepad.pad3;
+        this.pad4 = game.input.gamepad.pad4;
+
+        game.input.gamepad.start();
+
+        if(DEBUG_MODE)
+        {
+            var style = { font: "12px Arial", fill: "#ffffff", align: "left" };
+            activityPad1Text = game.add.text(10, 180, 'Last activity pad 1: ', style);
+            this.addPadCallbacks(this.pad1, activityPad1Text, 1);
+
+            activityPad2Text = game.add.text(10, 200, 'Last activity pad 2: ', style);
+            this.addPadCallbacks(this.pad2, activityPad2Text, 2);
+
+            activityPad3Text = game.add.text(10, 220, 'Last activity pad 3: ', style);
+            this.addPadCallbacks(this.pad3, activityPad3Text, 3);
+
+            activityPad4Text = game.add.text(10, 240, 'Last activity pad 4: ', style);
+            this.addPadCallbacks(this.pad4, activityPad4Text, 4);
+
+            activityGlobalText = game.add.text(10, 270, 'Last activity all pads: ', style);
+        
+            // Here we're setting callbacks that will trigger from ALL gamepads connected
+            game.input.gamepad.addCallbacks(this, {
+                onConnect: function(padIndex){
+                    activityGlobalText.setText('Last activity all pads: Connected with pad index '+padIndex);
+                },
+                onDisconnect: function(padIndex){
+                    activityGlobalText.setText('Last activity all pads: Disconnected with pad index '+padIndex);
+                },
+                onDown: function(buttonCode, value, padIndex){
+                    activityGlobalText.setText('Last activity all pads: Pad index '+padIndex+' buttonCode: '+buttonCode+' | value: '+value);
+                },
+                onUp: function(buttonCode, value, padIndex){
+                    activityGlobalText.setText('Last activity all pads: Pad index '+padIndex+' buttonCode: '+buttonCode+' | value: '+value);
+                },
+                onAxis: function(pad, axis, value) {
+                    activityGlobalText.setText('Last activity all pads: Pad index '+pad.index+': axis '+axis+': '+value);
+                },
+                onFloat: function(buttonCode, value, padIndex) {
+                    activityGlobalText.setText('Last activity all pads: Pad index '+padIndex+' buttonCode: '+buttonCode+' | value (float): '+value);
+                }
+            });
+        }
     },
 
     update: function () {
@@ -119,6 +177,29 @@ gameState.prototype = {
         if (!this.shipIsInvulnerable) {
             game.physics.arcade.overlap(this.shipSprite, this.asteroidGroup, this.asteroidCollision, null, this);
         }
+    },
+    
+    addPadCallbacks: function(pad, text, index) {
+        pad.addCallbacks(this, {
+            onConnect: function(){
+                text.setText('Last activity pad '+index+': Connected');
+            },
+            onDisconnect: function(){
+                text.setText('Last activity pad '+index+': Disconnected');
+            },
+            onDown: function(buttonCode, value){
+                text.setText('Last activity pad '+index+': buttonCode: '+buttonCode+' | value: '+value);
+            },
+            onUp: function(buttonCode, value){
+                text.setText('Last activity pad '+index+': buttonCode: '+buttonCode+' | value: '+value);
+            },
+            onAxis: function(pad, axis, value) {
+                text.setText('Last activity pad '+pad.index+': axis '+axis+': '+value);
+            },
+            onFloat: function(buttonCode, value) {
+                text.setText('Last activity pad '+index+': buttonCode: '+buttonCode+' | value (float): '+value);
+            }
+        });
     },
     
     initGraphics: function () {
@@ -166,22 +247,30 @@ gameState.prototype = {
         this.key_fire = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
     },
     
+
     checkPlayerInput: function () {
-        if (this.key_left.isDown) {
+        if (this.key_left.isDown || game.input.gamepad.pad1.getButton(Phaser.Gamepad.XBOX360_DPAD_LEFT).isDown) {
             this.shipSprite.body.angularVelocity = -shipProperties.angularVelocity;
-        } else if (this.key_right.isDown) {
+        } else if (this.key_right.isDown ||game.input.gamepad.pad1.getButton(Phaser.Gamepad.XBOX360_DPAD_RIGHT).isDown) {
             this.shipSprite.body.angularVelocity = shipProperties.angularVelocity;
         } else {
             this.shipSprite.body.angularVelocity = 0;
         }
         
-        if (this.key_thrust.isDown) {
+        if (this.key_thrust.isDown 
+            ||game.input.gamepad.pad1.getButton(Phaser.Gamepad.XBOX360_B).isDown 
+            ||game.input.gamepad.pad1.getButton(Phaser.Gamepad.XBOX360_X).isDown 
+
+            ||game.input.gamepad.pad1.getButton(7).isDown            
+            ||game.input.gamepad.pad1.getButton(4).isDown 
+            ||game.input.gamepad.pad1.getButton(5).isDown 
+            ||game.input.gamepad.pad1.getButton(6).isDown) {
             game.physics.arcade.accelerationFromRotation(this.shipSprite.rotation, shipProperties.acceleration, this.shipSprite.body.acceleration);
         } else {
             this.shipSprite.body.acceleration.set(0);
         }
         
-        if (this.key_fire.isDown) {
+        if (this.key_fire.isDown ||game.input.gamepad.pad1.getButton(Phaser.Gamepad.XBOX360_A).isDown) {
             this.fire();
         }
     },
