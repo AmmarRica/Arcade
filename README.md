@@ -5,9 +5,15 @@
 
 # TODO branches for Asteroid:
 - high score screen
-
-- 2-4 players. (Why not more?)
+- allow game to start with no controllers
 - random UFO shooting around
+- 2-4 players. (Why not more?)
+
+Debt items:
+- refactor all globals to one file
+- refactor gamepad code to it's own file
+- Add more text to debug mode
+
 
 # DONE 
 - Full screen support
