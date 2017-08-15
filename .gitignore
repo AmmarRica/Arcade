@@ -15,6 +15,7 @@
 *.suo
 .vs/
 .vscode
+log.txt
 
 # Node
 **/lib-cov
@@ -38,3 +39,4 @@ public/assets/lib/src/*
 !public/assets/lib/src/*.js
 .idea
 .vscode
+log.txt
