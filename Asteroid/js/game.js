@@ -1,60 +1,4 @@
-var DEBUG_MODE = false;
 
-
-var gameProperties = {
-    screenWidth: 800,
-    screenHeight: 600,
-
-    delayToStartLevel: 3,
-    padding: 30,
-};
-
-var graphicAssets = {
-    ship:{URL:'assets/ship.png', name:'ship'},
-    bullet:{URL:'assets/bullet.png', name:'bullet'},    
-    
-    asteroidLarge:{URL:'assets/asteroidLarge.png', name:'asteroidLarge'},
-    asteroidMedium:{URL:'assets/asteroidMedium.png', name:'asteroidMedium'},
-    asteroidSmall:{URL:'assets/asteroidSmall.png', name:'asteroidSmall'},
-};
-
-var soundAssets = {
-    fire:{URL:['assets/fire.m4a', 'assets/fire.ogg'], name:'fire'},
-    destroyed:{URL:['assets/destroyed.m4a', 'assets/destroyed.ogg'], name:'destroyed'},
-};
-
-var shipProperties = {
-    startX: gameProperties.screenWidth * 0.5,
-    startY: gameProperties.screenHeight * 0.5,
-    acceleration: 300,
-    drag: 100,
-    maxVelocity: 300,
-    angularVelocity: 200,
-    startingLives: 3,
-    timeToReset: 3,
-    blinkDelay: 0.2,
-};
-
-var bulletProperties = {
-    speed: 400,
-    interval: 250,
-    lifeSpan: 2000,
-    maxCount: 30,
-}
-
-var asteroidProperties = {
-    startingAsteroids: 4,
-    maxAsteroids: 20,
-    incrementAsteroids: 2,
-    
-    asteroidLarge: { minVelocity: 50, maxVelocity: 150, minAngularVelocity: 0, maxAngularVelocity: 200, score: 20, nextSize: graphicAssets.asteroidMedium.name, pieces: 2 },
-    asteroidMedium: { minVelocity: 50, maxVelocity: 200, minAngularVelocity: 0, maxAngularVelocity: 200, score: 50, nextSize: graphicAssets.asteroidSmall.name, pieces: 2 },
-    asteroidSmall: { minVelocity: 50, maxVelocity: 300, minAngularVelocity: 0, maxAngularVelocity: 200, score: 100 },
-};
-
-var fontAssets = {
-    counterFontStyle:{font: '20px Arial', fill: '#FFFFFF', align: 'center'},
-}
 
 
 /////////////////////////////
@@ -111,59 +55,13 @@ gameState.prototype = {
         this.initGraphics();
         this.initSounds();
         this.initPhysics();
-        this.initKeyboard();
-        this.initGamepad();
+        //this.initKeyboard();
+        //this.initGamepad();
+
+        initGamepad(this);
+        initKeyboard(this);
+
         this.resetAsteroids();
-    },
-
-    initGamepad: function(){
-
-        this.pad1 = game.input.gamepad.pad1;
-        this.pad2 = game.input.gamepad.pad2;
-        this.pad3 = game.input.gamepad.pad3;
-        this.pad4 = game.input.gamepad.pad4;
-
-        game.input.gamepad.start();
-
-        if(DEBUG_MODE)
-        {
-            var style = { font: "12px Arial", fill: "#ffffff", align: "left" };
-            activityPad1Text = game.add.text(10, 180, 'Last activity pad 1: ', style);
-            this.addPadCallbacks(this.pad1, activityPad1Text, 1);
-
-            activityPad2Text = game.add.text(10, 200, 'Last activity pad 2: ', style);
-            this.addPadCallbacks(this.pad2, activityPad2Text, 2);
-
-            activityPad3Text = game.add.text(10, 220, 'Last activity pad 3: ', style);
-            this.addPadCallbacks(this.pad3, activityPad3Text, 3);
-
-            activityPad4Text = game.add.text(10, 240, 'Last activity pad 4: ', style);
-            this.addPadCallbacks(this.pad4, activityPad4Text, 4);
-
-            activityGlobalText = game.add.text(10, 270, 'Last activity all pads: ', style);
-        
-            // Here we're setting callbacks that will trigger from ALL gamepads connected
-            game.input.gamepad.addCallbacks(this, {
-                onConnect: function(padIndex){
-                    activityGlobalText.setText('Last activity all pads: Connected with pad index '+padIndex);
-                },
-                onDisconnect: function(padIndex){
-                    activityGlobalText.setText('Last activity all pads: Disconnected with pad index '+padIndex);
-                },
-                onDown: function(buttonCode, value, padIndex){
-                    activityGlobalText.setText('Last activity all pads: Pad index '+padIndex+' buttonCode: '+buttonCode+' | value: '+value);
-                },
-                onUp: function(buttonCode, value, padIndex){
-                    activityGlobalText.setText('Last activity all pads: Pad index '+padIndex+' buttonCode: '+buttonCode+' | value: '+value);
-                },
-                onAxis: function(pad, axis, value) {
-                    activityGlobalText.setText('Last activity all pads: Pad index '+pad.index+': axis '+axis+': '+value);
-                },
-                onFloat: function(buttonCode, value, padIndex) {
-                    activityGlobalText.setText('Last activity all pads: Pad index '+padIndex+' buttonCode: '+buttonCode+' | value (float): '+value);
-                }
-            });
-        }
     },
 
     update: function () {
@@ -239,38 +137,100 @@ gameState.prototype = {
         this.asteroidGroup.enableBody = true;
         this.asteroidGroup.physicsBodyType = Phaser.Physics.ARCADE;
     },
-    
+
+    /*
     initKeyboard: function () {
         this.key_left = game.input.keyboard.addKey(Phaser.Keyboard.LEFT);
         this.key_right = game.input.keyboard.addKey(Phaser.Keyboard.RIGHT);
         this.key_thrust = game.input.keyboard.addKey(Phaser.Keyboard.UP);
         this.key_fire = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
     },
-    
+    */
+    /*
+    initGamepad: function(){
+
+        this.pad1 = game.input.gamepad.pad1;
+        this.pad2 = game.input.gamepad.pad2;
+        this.pad3 = game.input.gamepad.pad3;
+        this.pad4 = game.input.gamepad.pad4;
+
+        game.input.gamepad.start();
+        
+        if(DEBUG_MODE){
+
+            var style = { font: "12px Arial", fill: "#ffffff", align: "left" };
+            activityPad1Text = game.add.text(10, 180, 'Last activity pad 1: ', style);
+            this.addPadCallbacks(this.pad1, activityPad1Text, 1);
+
+            activityPad2Text = game.add.text(10, 200, 'Last activity pad 2: ', style);
+            this.addPadCallbacks(this.pad2, activityPad2Text, 2);
+
+            activityPad3Text = game.add.text(10, 220, 'Last activity pad 3: ', style);
+            this.addPadCallbacks(this.pad3, activityPad3Text, 3);
+
+            activityPad4Text = game.add.text(10, 240, 'Last activity pad 4: ', style);
+            this.addPadCallbacks(this.pad4, activityPad4Text, 4);
+
+            activityGlobalText = game.add.text(10, 270, 'Last activity all pads: ', style);
+            
+            // Here we're setting callbacks that will trigger from ALL gamepads connected
+            game.input.gamepad.addCallbacks(this, {
+                onConnect: function(padIndex){
+                    activityGlobalText.setText('Last activity all pads: Connected with pad index '+padIndex);
+                },
+                onDisconnect: function(padIndex){
+                    activityGlobalText.setText('Last activity all pads: Disconnected with pad index '+padIndex);
+                },
+                onDown: function(buttonCode, value, padIndex){
+                    activityGlobalText.setText('Last activity all pads: Pad index '+padIndex+' buttonCode: '+buttonCode+' | value: '+value);
+                },
+                onUp: function(buttonCode, value, padIndex){
+                    activityGlobalText.setText('Last activity all pads: Pad index '+padIndex+' buttonCode: '+buttonCode+' | value: '+value);
+                },
+                onAxis: function(pad, axis, value) {
+                    activityGlobalText.setText('Last activity all pads: Pad index '+pad.index+': axis '+axis+': '+value);
+                },
+                onFloat: function(buttonCode, value, padIndex) {
+                    activityGlobalText.setText('Last activity all pads: Pad index '+padIndex+' buttonCode: '+buttonCode+' | value (float): '+value);
+                }
+            });
+        }
+    },*/
 
     checkPlayerInput: function () {
-        if (this.key_left.isDown || game.input.gamepad.pad1.getButton(Phaser.Gamepad.XBOX360_DPAD_LEFT).isDown) {
+        if (this.key_left.isDown 
+            || (game.input.gamepad.pad1.getButton(Phaser.Gamepad.XBOX360_DPAD_LEFT) 
+                && game.input.gamepad.pad1.getButton(Phaser.Gamepad.XBOX360_DPAD_LEFT).isDown)) {
             this.shipSprite.body.angularVelocity = -shipProperties.angularVelocity;
-        } else if (this.key_right.isDown ||game.input.gamepad.pad1.getButton(Phaser.Gamepad.XBOX360_DPAD_RIGHT).isDown) {
+        } else if (this.key_right.isDown 
+            || (game.input.gamepad.pad1.getButton(Phaser.Gamepad.XBOX360_DPAD_RIGHT))
+                && game.input.gamepad.pad1.getButton(Phaser.Gamepad.XBOX360_DPAD_RIGHT).isDown) {
             this.shipSprite.body.angularVelocity = shipProperties.angularVelocity;
         } else {
             this.shipSprite.body.angularVelocity = 0;
         }
         
         if (this.key_thrust.isDown 
-            ||game.input.gamepad.pad1.getButton(Phaser.Gamepad.XBOX360_B).isDown 
-            ||game.input.gamepad.pad1.getButton(Phaser.Gamepad.XBOX360_X).isDown 
-
-            ||game.input.gamepad.pad1.getButton(7).isDown            
-            ||game.input.gamepad.pad1.getButton(4).isDown 
-            ||game.input.gamepad.pad1.getButton(5).isDown 
-            ||game.input.gamepad.pad1.getButton(6).isDown) {
+            || (game.input.gamepad.pad1.getButton(Phaser.Gamepad.XBOX360_B) 
+            && game.input.gamepad.pad1.getButton(Phaser.Gamepad.XBOX360_B).isDown)
+        || (game.input.gamepad.pad1.getButton(Phaser.Gamepad.XBOX360_X) 
+            && game.input.gamepad.pad1.getButton(Phaser.Gamepad.XBOX360_X).isDown)
+        || (game.input.gamepad.pad1.getButton(7) 
+            && game.input.gamepad.pad1.getButton(7).isDown)
+        || (game.input.gamepad.pad1.getButton(4) 
+            && game.input.gamepad.pad1.getButton(4).isDown)
+        || (game.input.gamepad.pad1.getButton(5) 
+            && game.input.gamepad.pad1.getButton(5).isDown)
+        || (game.input.gamepad.pad1.getButton(6) 
+            && game.input.gamepad.pad1.getButton(6).isDown)) {
             game.physics.arcade.accelerationFromRotation(this.shipSprite.rotation, shipProperties.acceleration, this.shipSprite.body.acceleration);
         } else {
             this.shipSprite.body.acceleration.set(0);
         }
         
-        if (this.key_fire.isDown ||game.input.gamepad.pad1.getButton(Phaser.Gamepad.XBOX360_A).isDown) {
+        if (this.key_fire.isDown 
+            ||(game.input.gamepad.pad1.getButton(Phaser.Gamepad.XBOX360_A)
+            &&game.input.gamepad.pad1.getButton(Phaser.Gamepad.XBOX360_A).isDown)) {
             this.fire();
         }
     },

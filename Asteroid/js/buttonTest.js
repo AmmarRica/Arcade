@@ -1,34 +1,7 @@
-//var game = new Phaser.Game(800, 600, Phaser.AUTO, 'phaser-example', { preload: preload, create: create, update: update });
+
 
 var buttonTest = function(game){
 };
-
-var startInputButton;
-var resetButton;
-
-var supportedText;
-var activeText;
-var gamepadCountText;
-
-var pad1;
-var pad1Text;
-var pad2;
-var pad2Text;
-var pad3;
-var pad3Text;
-var pad4;
-var pad4Text;
-
-var activityPad1Text;
-var activityPad2Text;
-var activityPad3Text;
-var activityPad4Text;
-var activityGlobalText;
-
-var pad1StateText;
-var pad2StateText;
-var pad3StateText;
-var pad4StateText;
 
 buttonTest.prototype = {
 
