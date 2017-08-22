@@ -68,8 +68,6 @@ gameState.prototype = {
         this.initGraphics();
         this.initSounds();
         this.initPhysics();
-        //this.initKeyboard();
-        //this.initGamepad();
 
         initGamepad(this);
         initKeyboard(this);
@@ -150,65 +148,6 @@ gameState.prototype = {
         this.asteroidGroup.enableBody = true;
         this.asteroidGroup.physicsBodyType = Phaser.Physics.ARCADE;
     },
-
-    /*
-    initKeyboard: function () {
-        this.key_left = game.input.keyboard.addKey(Phaser.Keyboard.LEFT);
-        this.key_right = game.input.keyboard.addKey(Phaser.Keyboard.RIGHT);
-        this.key_thrust = game.input.keyboard.addKey(Phaser.Keyboard.UP);
-        this.key_fire = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
-    },
-    */
-    /*
-    initGamepad: function(){
-
-        this.pad1 = game.input.gamepad.pad1;
-        this.pad2 = game.input.gamepad.pad2;
-        this.pad3 = game.input.gamepad.pad3;
-        this.pad4 = game.input.gamepad.pad4;
-
-        game.input.gamepad.start();
-        
-        if(DEBUG_MODE){
-
-            var style = { font: "12px Arial", fill: "#ffffff", align: "left" };
-            activityPad1Text = game.add.text(10, 180, 'Last activity pad 1: ', style);
-            this.addPadCallbacks(this.pad1, activityPad1Text, 1);
-
-            activityPad2Text = game.add.text(10, 200, 'Last activity pad 2: ', style);
-            this.addPadCallbacks(this.pad2, activityPad2Text, 2);
-
-            activityPad3Text = game.add.text(10, 220, 'Last activity pad 3: ', style);
-            this.addPadCallbacks(this.pad3, activityPad3Text, 3);
-
-            activityPad4Text = game.add.text(10, 240, 'Last activity pad 4: ', style);
-            this.addPadCallbacks(this.pad4, activityPad4Text, 4);
-
-            activityGlobalText = game.add.text(10, 270, 'Last activity all pads: ', style);
-            
-            // Here we're setting callbacks that will trigger from ALL gamepads connected
-            game.input.gamepad.addCallbacks(this, {
-                onConnect: function(padIndex){
-                    activityGlobalText.setText('Last activity all pads: Connected with pad index '+padIndex);
-                },
-                onDisconnect: function(padIndex){
-                    activityGlobalText.setText('Last activity all pads: Disconnected with pad index '+padIndex);
-                },
-                onDown: function(buttonCode, value, padIndex){
-                    activityGlobalText.setText('Last activity all pads: Pad index '+padIndex+' buttonCode: '+buttonCode+' | value: '+value);
-                },
-                onUp: function(buttonCode, value, padIndex){
-                    activityGlobalText.setText('Last activity all pads: Pad index '+padIndex+' buttonCode: '+buttonCode+' | value: '+value);
-                },
-                onAxis: function(pad, axis, value) {
-                    activityGlobalText.setText('Last activity all pads: Pad index '+pad.index+': axis '+axis+': '+value);
-                },
-                onFloat: function(buttonCode, value, padIndex) {
-                    activityGlobalText.setText('Last activity all pads: Pad index '+padIndex+' buttonCode: '+buttonCode+' | value (float): '+value);
-                }
-            });
-        }
-    },*/
 
     checkPlayerInput: function () {
         if (this.key_left.isDown 
@@ -388,6 +327,6 @@ gameState.prototype = {
         this.resetAsteroids();
     },
     endGame: function(){
-        game.state.start(states.main);
+        game.state.start(states.scoreScreen);
     },
 };

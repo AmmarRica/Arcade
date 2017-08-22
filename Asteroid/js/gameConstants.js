@@ -7,7 +7,7 @@ var gameProperties = {
     screenHeight: 600,
 
     delayToStartLevel: 3,
-    padding: 30, //put on the side of the screen to make the sprite look like they are not teleporting.
+    padding: 24, //put on the side of the screen to make the sprite look like they are not teleporting.
 };
 
 var graphicAssets = {
@@ -38,7 +38,7 @@ var shipProperties = {
     drag: 150, //200
     maxVelocity: 300,
     angularVelocity: 200, //ship turn speed 
-    startingLives: 10, //3
+    startingLives: 2, //3
     timeToReset: 3,
     blinkDelay: 0.2,
 };
