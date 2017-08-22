@@ -86,6 +86,7 @@ var initGamepad = function(_gameState){
 }
 
 
+//unfinished
 var GamepadInputDown = function(_gameState, _inputType , _padNum )
 {
     //check if the gamepad button is pressed down
