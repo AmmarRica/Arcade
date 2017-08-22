@@ -33,15 +33,28 @@ var gameState = function (game){
 gameState.prototype = {
     
     preload: function () {
-        game.load.image(graphicAssets.asteroidLarge.name, graphicAssets.asteroidLarge.URL);
-        game.load.image(graphicAssets.asteroidMedium.name, graphicAssets.asteroidMedium.URL);
-        game.load.image(graphicAssets.asteroidSmall.name, graphicAssets.asteroidSmall.URL);
-        
-        game.load.image(graphicAssets.bullet.name, graphicAssets.bullet.URL);
-        game.load.image(graphicAssets.ship.name, graphicAssets.ship.URL);
-        
-        game.load.audio(soundAssets.destroyed.name, soundAssets.destroyed.URL);
-        game.load.audio(soundAssets.fire.name, soundAssets.fire.URL);
+        if(!DEBUG_MODE)
+        {
+            game.load.image(graphicAssets.asteroidLarge.name, graphicAssets.asteroidLarge.URL);
+            game.load.image(graphicAssets.asteroidMedium.name, graphicAssets.asteroidMedium.URL);
+            game.load.image(graphicAssets.asteroidSmall.name, graphicAssets.asteroidSmall.URL);
+            
+            game.load.image(graphicAssets.bullet.name, graphicAssets.bullet.URL);
+            game.load.image(graphicAssets.ship.name, graphicAssets.ship.URL);
+            
+            game.load.audio(soundAssets.destroyed.name, soundAssets.destroyed.URL);
+            game.load.audio(soundAssets.fire.name, soundAssets.fire.URL);
+        }else{
+            game.load.image(DebugGraphicAssets.asteroidLarge.name, DebugGraphicAssets.asteroidLarge.URL);
+            game.load.image(DebugGraphicAssets.asteroidMedium.name, DebugGraphicAssets.asteroidMedium.URL);
+            game.load.image(DebugGraphicAssets.asteroidSmall.name, DebugGraphicAssets.asteroidSmall.URL);
+            
+            game.load.image(DebugGraphicAssets.bullet.name, DebugGraphicAssets.bullet.URL);
+            game.load.image(DebugGraphicAssets.ship.name, DebugGraphicAssets.ship.URL);
+
+            game.load.audio(soundAssets.destroyed.name, soundAssets.destroyed.URL);
+            game.load.audio(soundAssets.fire.name, soundAssets.fire.URL);
+        }
     },
 
     init: function () {

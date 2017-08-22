@@ -11,12 +11,19 @@ var gameProperties = {
 };
 
 var graphicAssets = {
-    ship:{URL:'assets/ship.png', name:'ship'},
-    bullet:{URL:'assets/bullet.png', name:'bullet'},    
-    
-    asteroidLarge:{URL:'assets/asteroidLarge.png', name:'asteroidLarge'},
-    asteroidMedium:{URL:'assets/asteroidMedium.png', name:'asteroidMedium'},
-    asteroidSmall:{URL:'assets/asteroidSmall.png', name:'asteroidSmall'},
+    ship:{URL:'assets/sprites/ship.png', name:'ship'},
+    bullet:{URL:'assets/sprites/bullet.png', name:'bullet'},    
+    asteroidLarge:{URL:'assets/sprites/asteroidLarge.png', name:'asteroidLarge'},
+    asteroidMedium:{URL:'assets/sprites/asteroidMedium.png', name:'asteroidMedium'},
+    asteroidSmall:{URL:'assets/sprites/asteroidSmall.png', name:'asteroidSmall'},
+};
+
+var DebugGraphicAssets = {
+    ship:{URL:'assets/debug_sprites/ship.png', name:'ship'},
+    bullet:{URL:'assets/debug_sprites/bullet.png', name:'bullet'},    
+    asteroidLarge:{URL:'assets/debug_sprites/asteroidLarge.png', name:'asteroidLarge'},
+    asteroidMedium:{URL:'assets/debug_sprites/asteroidMedium.png', name:'asteroidMedium'},
+    asteroidSmall:{URL:'assets/debug_sprites/asteroidSmall.png', name:'asteroidSmall'},
 };
 
 var soundAssets = {
