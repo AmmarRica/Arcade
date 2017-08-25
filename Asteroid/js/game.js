@@ -207,11 +207,12 @@ gameState.prototype = {
                 return;
             }
         if (game.time.now > this.bulletInterval) {
-            this.sndFire.play();
+            
             
             var bullet = this.bulletGroup.getFirstExists(false);
             
             if (bullet) {
+                this.sndFire.play();
                 var length = this.shipSprite.width * 0.5;
                 var x = this.shipSprite.x + (Math.cos(this.shipSprite.rotation) * length);
                 var y = this.shipSprite.y + (Math.sin(this.shipSprite.rotation) * length);
