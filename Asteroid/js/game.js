@@ -224,16 +224,27 @@ gameState.prototype = {
         }
     },
     
-    createAsteroid: function (x, y, size, pieces) {
+    createAsteroid: function (x, y, size, pieces, angle) {
         if (pieces === undefined) { pieces = 1; }
+        if (angle === undefined) {
+            angle = null;
+        } else if (angle) {
+            angle = game.math.radToDeg(angle);
+        }
         
         for (var i=0; i<pieces; i++) {
             var asteroid = this.asteroidGroup.create(x, y, size);
             asteroid.anchor.set(0.5, 0.5);
             asteroid.body.angularVelocity = game.rnd.integerInRange(asteroidProperties[size].minAngularVelocity, asteroidProperties[size].maxAngularVelocity);
 
-            //this needs to be more predictable
-            var randomAngle = game.math.degToRad(game.rnd.angle()); 
+            var randomAngle;
+            if (angle) {
+                randomAngle = game.math.degToRad(game.rnd.integerInRange(
+                    angle - (asteroidProperties.sprayAngle / 2), angle + (asteroidProperties.sprayAngle / 2)));
+            } else {
+                randomAngle = game.math.degToRad(game.rnd.angle()); 
+            }
+            
             var randomVelocity = game.rnd.integerInRange(asteroidProperties[size].minVelocity, asteroidProperties[size].maxVelocity);
 
             game.physics.arcade.velocityFromRotation(randomAngle, randomVelocity, asteroid.body.velocity);
@@ -267,6 +278,11 @@ gameState.prototype = {
 
         this.sndDestroyed.play();
 
+        var targetAngle = null;
+        if (target.key == graphicAssets.bullet.name) {
+            targetAngle = target.body.angle;
+        }
+        
         target.kill();
         asteroid.kill();
         
@@ -275,7 +291,10 @@ gameState.prototype = {
             this.destroyShip();
         }
         
-        this.splitAsteroid(asteroid);
+        if (asteroidProperties[asteroid.key].nextSize) {
+            this.createAsteroid(asteroid.x, asteroid.y, asteroidProperties[asteroid.key].nextSize, asteroidProperties[asteroid.key].pieces, targetAngle);
+        }
+
         this.updateScore(asteroidProperties[asteroid.key].score);
         
         if (!this.asteroidGroup.countLiving()) {
@@ -310,12 +329,6 @@ gameState.prototype = {
     
     shipBlink: function () {
         this.shipSprite.visible = !this.shipSprite.visible;
-    },
-    
-    splitAsteroid: function (asteroid) {
-        if (asteroidProperties[asteroid.key].nextSize) {
-            this.createAsteroid(asteroid.x, asteroid.y, asteroidProperties[asteroid.key].nextSize, asteroidProperties[asteroid.key].pieces);
-        }
     },
     
     updateScore: function (score) {
