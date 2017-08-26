@@ -3,8 +3,8 @@ var DEBUG_MODE = true;
 
 
 var gameProperties = {
-    screenWidth: 800,
-    screenHeight: 600,
+    screenWidth: 1600,
+    screenHeight: 900,
 
     delayToStartLevel: 3,
     padding: 24, //put on the side of the screen to make the sprite look like they are not teleporting.
@@ -51,7 +51,7 @@ var bulletProperties = {
 }
 
 var asteroidProperties = {
-    startingAsteroids: 4,
+    startingAsteroids: 6,
     maxAsteroids: 20,
     incrementAsteroids: 2,
     sprayAngle: 270,
