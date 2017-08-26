@@ -1,10 +1,5 @@
-var gameProperties = {
-    screenWidth: 800,
-    screenHeight: 600,
 
-    delayToStartLevel: 3,
-    padding: 24,
-};
+
 
 var states = {
     main: "main",

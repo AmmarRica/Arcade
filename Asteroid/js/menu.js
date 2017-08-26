@@ -50,7 +50,8 @@ mainState.prototype = {
 
         //full screen
         //game.input.onDown.addOnce(this.buttonTest, this);
-        //game.scale.fullScreenScaleMode = Phaser.ScaleManager.EXACT_FIT;
+        game.scale.fullScreenScaleMode = Phaser.ScaleManager.EXACT_FIT;
+        
         fullScreenKey = game.input.keyboard.addKey(Phaser.Keyboard.F);
         fullScreenKey.onDown.addOnce(this.gofull,this)
     },
