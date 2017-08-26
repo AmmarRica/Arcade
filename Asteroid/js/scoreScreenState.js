@@ -3,8 +3,6 @@ var scoreScreenState = function(game){
 };
 
 
-var DefaultScoreboard = [10,20,30,40,50,60,70,80,90,100];
-
 scoreScreenState.prototype = {
     gofull: function() {
         if (game.scale.isFullScreen)
@@ -18,8 +16,7 @@ scoreScreenState.prototype = {
     },
 
     create: function () {
-
-        var startInstructions = 'SCORE SCREEN\n\n000s\n\nPress SPACE or A to continue';
+        var startInstructions = 'HIGH SCORE\n\n'+ getLeaderboardScreenText() +'\n\n\n\nPress SPACE or A to continue';
         this.tf_start = game.add.text(game.world.centerX, game.world.centerY, startInstructions, fontAssets.counterFontStyle);
         this.tf_start.align = 'center';
         this.tf_start.anchor.set(0.5, 0.5);

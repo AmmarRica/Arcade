@@ -1,13 +1,17 @@
 //Made by Wilk
-//AMR I need to get this to work with my code.
+//AMR:
+/*TODO:
+*   -Add a way to accept Name Entery.
+*   -Add the placement at the start.
+*/
 
 // Example initial leaderboard.
 var Leaderboard = [{
     name: "AMR",
-    score: 20
+    score: 2480
   }, {
     name: "AEW",
-    score: 10
+    score: 5000
   }];
   
 // Maximum number of high scores.
@@ -15,25 +19,18 @@ var MAX_LEADERBOARD_LENGTH = 10;
 
 
 // Prints the current leaderboard to console
-var printLeaderboard = function() {
-    var output = "Leaderboard:\n";
+var getLeaderboardScreenText = function() {
+    var output = "" //Leaderboard:\n";
     for (var row in Leaderboard) {
         output += (Leaderboard[row].name + ": " + Leaderboard[row].score + "\n");
     }
-        console.log(output);
-};
-
-// Adds a score from input boxes.
-//AMR EDIT: I will put in the values in a different way.
-var AddScoreDemo = function(){
-//var name = document.getElementById("newscore_name").value;
-//var score = parseInt(document.getElementById("newscore_score").value);
-//AddScore(name, score);
+    return output;
+    console.log(output);
 };
 
 
 // Adds a score from parameters.
-var AddScore = function(name, score) {
+var SubmitScore = function(name, score) {
     for (var row = 0; row < MAX_LEADERBOARD_LENGTH; row++) {
       var record = Leaderboard[row];
       if (record && record.score < score) {
@@ -58,5 +55,5 @@ var AddScore = function(name, score) {
         break;
       }
     }
-    printLeaderboard();
+    //printLeaderboard();
 };

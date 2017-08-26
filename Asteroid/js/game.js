@@ -207,8 +207,6 @@ gameState.prototype = {
                 return;
             }
         if (game.time.now > this.bulletInterval) {
-            
-            
             var bullet = this.bulletGroup.getFirstExists(false);
             
             if (bullet) {
@@ -235,7 +233,8 @@ gameState.prototype = {
             asteroid.anchor.set(0.5, 0.5);
             asteroid.body.angularVelocity = game.rnd.integerInRange(asteroidProperties[size].minAngularVelocity, asteroidProperties[size].maxAngularVelocity);
 
-            var randomAngle = game.math.degToRad(game.rnd.angle());
+            //this needs to be more predictable
+            var randomAngle = game.math.degToRad(game.rnd.angle()); 
             var randomVelocity = game.rnd.integerInRange(asteroidProperties[size].minVelocity, asteroidProperties[size].maxVelocity);
 
             game.physics.arcade.velocityFromRotation(randomAngle, randomVelocity, asteroid.body.velocity);
@@ -327,7 +326,9 @@ gameState.prototype = {
         
         this.resetAsteroids();
     },
-    endGame: function(){
+
+    endGame: function(){        
+        SubmitScore("AMR", this.score);
         game.state.start(states.scoreScreen);
     },
 };
