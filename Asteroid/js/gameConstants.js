@@ -54,6 +54,7 @@ var asteroidProperties = {
     startingAsteroids: 4,
     maxAsteroids: 20,
     incrementAsteroids: 2,
+    sprayAngle: 270,
     
     asteroidLarge: { minVelocity: 50, maxVelocity: 150, minAngularVelocity: 0, maxAngularVelocity: 200, score: 20, nextSize: graphicAssets.asteroidMedium.name, pieces: 2 },
     asteroidMedium: { minVelocity: 50, maxVelocity: 200, minAngularVelocity: 0, maxAngularVelocity: 200, score: 50, nextSize: graphicAssets.asteroidSmall.name, pieces: 2 },
