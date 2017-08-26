@@ -59,6 +59,7 @@ gameState.prototype = {
         this.bulletInterval = 0;
         this.asteroidsCount = asteroidProperties.startingAsteroids;
         this.shipLives = shipProperties.startingLives;
+        this.shipIsInvulnerable = false;
         this.score = 0;
     },
     
@@ -258,12 +259,19 @@ gameState.prototype = {
     },
     
     asteroidCollision: function (target, asteroid) {
+        // Occasionally child asteroids will collide with ship on creation.
+        // This is a workaround.
+        if (target.key == graphicAssets.ship.name && this.shipIsInvulnerable) {
+            return;
+        }
+
         this.sndDestroyed.play();
-        
+
         target.kill();
         asteroid.kill();
         
         if (target.key == graphicAssets.ship.name) {
+            this.shipIsInvulnerable = true;
             this.destroyShip();
         }
         
