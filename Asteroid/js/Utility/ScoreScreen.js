@@ -7,11 +7,11 @@
 
 // Example initial leaderboard.
 var Leaderboard = [{
+    name: "AEW",
+    score: 2570
+  }, {
     name: "AMR",
     score: 2480
-  }, {
-    name: "AEW",
-    score: 5000
   }];
   
 // Maximum number of high scores.
