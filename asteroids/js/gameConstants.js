@@ -1,5 +1,6 @@
 //enable to see text that displays helpful info
-var DEBUG_MODE = true;
+
+var DEBUG_MODE = false;
 
 
 var gameProperties = {
