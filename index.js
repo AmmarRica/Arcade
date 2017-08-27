@@ -1,5 +1,5 @@
-const express = require('express')
-const app = express()
+const express = require('express');
+const app = express();
 
 
 
@@ -8,20 +8,15 @@ app.listen(process.env.PORT || 5000, function () {
 })
 
 app.get('/', function(req, res){
+  console.log(__dirname + '/index.html');
   res.sendFile(__dirname + '/index.html');
 });
 
 
-//one for each folder
-
 app.get('/asteroid', function(req, res){
-  res.sendFile(__dirname + 'asteroid/index.html');
-  app.use(express.static('asteroid'));
+  res.sendFile(__dirname + '/asteroid/index.html');
+  //res.sendFile(path.join(__dirname, 'asteroid', 'index.html'));
 });
 
+app.use(express.static('asteroid'));
 
-
-app.get('/asteroid-multiplayer', function(req, res){
-  res.sendFile(__dirname + '/asteroid-multiplayer/index.html');
-  app.use(express.static('asteroid-multiplayer'));
-});
