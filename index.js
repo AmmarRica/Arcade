@@ -19,6 +19,6 @@ app.get('/asteroid', function(req, res){
   //res.sendFile(path.join(__dirname, 'asteroid', 'index.html'));
 });
 
-//what
+//what ss
 
 app.use(express.static('asteroid'));
