@@ -15,7 +15,7 @@ app.get('/', function(req, res){
 //one for each folder
 
 app.get('/asteroid', function(req, res){
-  res.sendFile(__dirname + '/asteroid/index.html');
+  res.sendFile(__dirname + 'asteroid/index.html');
   app.use(express.static('asteroid'));
 });
 
