@@ -13,10 +13,14 @@ app.get('/', function(req, res){
 
 
 app.get('/asteroid', function(req, res){
-  res.sendFile(path.join(__dirname, '/asteroid/index.html'));
+  res.sendFile(__dirname + '/asteroid/index.html');
   //res.sendFile(path.join(__dirname, 'asteroid', 'index.html'));
 
 });
+
+app.get('/about', function (req, res) {
+  res.send('about')
+})
 
 app.use(express.static('asteroid'));
 
