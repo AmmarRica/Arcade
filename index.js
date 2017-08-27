@@ -15,7 +15,8 @@ app.get('/', function(req, res){
 //one for each folder
 
 app.get('/asteroid', function(req, res){
-  res.sendFile(__dirname + 'asteroid/index.html');
+  //res.sendFile(__dirname + '/asteroid/index.html');
+  res.sendFile(path.join(__dirname, 'asteroid', 'index.html'));
   app.use(express.static('asteroid'));
 });
 
@@ -23,5 +24,6 @@ app.get('/asteroid', function(req, res){
 
 app.get('/asteroid-multiplayer', function(req, res){
   res.sendFile(__dirname + '/asteroid-multiplayer/index.html');
+  
   app.use(express.static('asteroid-multiplayer'));
 });
