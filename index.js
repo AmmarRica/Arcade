@@ -16,7 +16,7 @@ app.get('/', function(req, res){
 
 app.get('/asteroid', function(req, res){
   console.log(__dirname + '/asteroid/');
-  res.sendFile(__dirname + '/asteroid/');
+  res.sendFile('/asteroid/', { root: __dirname });
 
   path.join(__dirname, 'asteroid', 'to', 'file')
   //res.sendFile(path.join(__dirname, 'asteroid', 'index.html'));
