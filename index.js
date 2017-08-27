@@ -13,6 +13,7 @@ app.get('/', function(req, res){
   res.sendFile(__dirname + '/index.html');
 });
 
+app.use(express.static('asteroid'));
 
 app.get('/asteroid', function(req, res){
   console.log(__dirname + '/asteroid/');
@@ -22,4 +23,3 @@ app.get('/asteroid', function(req, res){
 //what ss
 //var path = require('path');
 
-app.use(express.static('asteroid'));
