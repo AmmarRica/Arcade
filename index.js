@@ -14,6 +14,7 @@ app.get('/', function(req, res){
 
 
 app.get('/asteroid', function(req, res){
+  console.log(__dirname + '/asteroid/index.html');
   res.sendFile(__dirname + '/asteroid/index.html');
   //res.sendFile(path.join(__dirname, 'asteroid', 'index.html'));
 });
