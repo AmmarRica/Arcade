@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+var path = require('path');
 
 
 
@@ -14,11 +15,14 @@ app.get('/', function(req, res){
 
 
 app.get('/asteroid', function(req, res){
-  console.log(__dirname + '/asteroid/index.html');
-  res.sendFile(__dirname + '/asteroid/index.html');
+  console.log(__dirname + '/asteroid/' + 'index.html');
+  res.sendFile(__dirname + '/asteroid/' + 'index.html');
+
+  path.join(__dirname, 'asteroid', 'to', 'file')
   //res.sendFile(path.join(__dirname, 'asteroid', 'index.html'));
 });
 
 //what ss
+//var path = require('path');
 
 app.use(express.static('asteroid'));
