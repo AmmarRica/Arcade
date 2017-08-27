@@ -13,3 +13,9 @@ app.get('/asteroid', function(req, res){
   res.sendFile(__dirname+ '/asteroid/');
 });
 
+
+app.use(express.static('asteroids'));
+//call asteroid folder
+app.get('/asteroids', function(req, res){
+  res.sendFile(__dirname+ '/asteroids/');
+});
