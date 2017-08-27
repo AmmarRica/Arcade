@@ -8,7 +8,8 @@ app.get('/', function(req, res){
 
 app.use(express.static('asteroid'));
 
+//call asteroid folder
 app.get('/asteroid', function(req, res){
-  res.sendFile('/asteroid/', { root: __dirname });
+  res.sendFile(__dirname+ '/asteroid/');
 });
 
