@@ -347,7 +347,7 @@ gameState.prototype = {
     },
 
     endGame: function(){        
-        SubmitScore("AMR", this.score);
+        SubmitScore(PLACEHOLDER_NAME, this.score);
         game.state.start(states.scoreScreen);
     },
 };

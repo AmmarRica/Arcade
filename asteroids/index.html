@@ -4,6 +4,14 @@
         <title>Asteroid</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <link rel="stylesheet" href="styles.css">
+
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+
+        <script src="/socket.io/socket.io.js"></script>
+
+
         <script src="js/phaser.min.js"></script>
         
         <script src="js/utility/gamepadSupport.js"></script> 
@@ -17,9 +25,29 @@
         
         <script src="js/menu.js"></script>     
 
-        <script src="js/index.js"></script>       
+        <script src="js/index.js"></script>   
+
+        <script>
+            var socket = io();
+
+            var username = window.prompt("Pick your initials! (for highscore keeping)","AMR"); 
+            if(!username){
+                username = "AMY"
+            }
+
+        </script>
     </head>
     <body>
-        <div id="gameDiv"> </div>
+            <div ng-app="myApp">
+                    <div id="outer" ng-controller="myController">
+                      {{helloWorld}}
+                     
+                     <button ng-click="sendNewScoreToBackend()" text="button">button</button>
+                     <button onclick="submitNewScore()" text="button">alertFunction</button>
+                     
+                    </div>
+            </div>
+
+        <div class=".center-div" id="gameDiv"> </div>
     </body>
 </html>

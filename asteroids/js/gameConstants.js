@@ -52,9 +52,9 @@ var bulletProperties = {
 }
 
 var asteroidProperties = {
-    startingAsteroids: 6,
-    maxAsteroids: 20,
-    incrementAsteroids: 2,
+    startingAsteroids: 9, //6
+    maxAsteroids: 30,
+    incrementAsteroids: 5, //2
     sprayAngle: 270,
     
     asteroidLarge: { minVelocity: 50, maxVelocity: 150, minAngularVelocity: 0, maxAngularVelocity: 200, score: 20, nextSize: graphicAssets.asteroidMedium.name, pieces: 2 },
