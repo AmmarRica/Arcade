@@ -346,8 +346,10 @@ gameState.prototype = {
         this.resetAsteroids();
     },
 
-    endGame: function(){        
-        SubmitScore(PLACEHOLDER_NAME, this.score);
+    endGame: function(){       
+        //PLACEHOLDER_NAME
+        if(username) {SubmitScore(username, this.score);}
+        else{SubmitScore(PLACEHOLDER_NAME, this.score);}
         game.state.start(states.scoreScreen);
     },
 };

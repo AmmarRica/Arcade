@@ -8,10 +8,8 @@
 
 var myApp = angular.module('myApp', []);
 
-
 // Example initial leaderboard.
-var Leaderboard = [    {    name: "RL",    score: 13010  }];
-  
+var Leaderboard = [   ];
 var PLACEHOLDER_NAME = 'AMR';
 
 // Maximum number of high scores.

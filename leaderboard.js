@@ -8,10 +8,10 @@ var PLACEHOLDER_NAME = 'AMR';
 
 //This is like the DB for all the players
 var Leaderboard = [
-    {    name: "RL",    score: 13010  },
-    {    name: "AEW",    score: 8160  },
-    {    name: "AEW",    score: 2570  },                     
-    {    name: "JAK",    score: 1570  },
+    //{    name: "RL",    score: 13010  },
+   // {    name: "AEW",    score: 8160  },
+    //{    name: "AEW",    score: 2570  },                     
+   // {    name: "JAK",    score: 1570  },
     {    name: "BK ",    score: 1500  }
 ];
 
