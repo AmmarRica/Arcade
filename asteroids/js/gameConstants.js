@@ -48,7 +48,7 @@ var bulletProperties = {
     speed: 400,
     interval: 150,
     lifeSpan: 2000,
-    maxCount: 3,
+    maxCount: 5,
 }
 
 var asteroidProperties = {

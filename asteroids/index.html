@@ -38,16 +38,22 @@
         </script>
     </head>
     <body>
-            <div ng-app="myApp">
-                    <div id="outer" ng-controller="myController">
-                      {{helloWorld}}
-                     
-                     <button ng-click="sendNewScoreToBackend()" text="button">button</button>
-                     <button onclick="submitNewScore()" text="button">alertFunction</button>
-                     
-                    </div>
-            </div>
-
         <div class=".center-div" id="gameDiv"> </div>
+
+        <p>This is just an Asteroid inspired game that focuses on movement and improving the game (better splitting asteroids that won't fly toward you). I will revisit this game later and improve it some more. Let me know what you think!</p>
+
+        <h3>Features coming at some point:</h3>
+        <ul>
+            <li>Local Multiplayer (up to 4).</li>
+            <li>Better controller support (currently Xbox360 controllers are supported but not reliable.)</li>
+            <li>UFOs like original game</li>
+            <li>Better animation + polish</li>
+          </ul>  
+
+        <div ng-app="myApp">
+            <div id="outer" ng-controller="myController">
+              {{helloWorld}}
+            </div>
+    </div>
     </body>
 </html>
